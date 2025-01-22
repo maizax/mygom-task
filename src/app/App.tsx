@@ -1,9 +1,10 @@
+import { Dashboard } from '../features/dashboard/components';
 import './App.css';
 
 function App() {
   return (
     <>
-      <p className="bg-gray-400">hello world</p>
+      <Dashboard />
     </>
   );
 }
