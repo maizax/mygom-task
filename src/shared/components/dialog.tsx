@@ -1,19 +1,24 @@
+import { LinkModel } from '../models';
 import { Button } from './button';
+import { Link } from './link';
 
 export const Dialog = ({
-  onButtonClick,
-  onBackDropClick,
+  setDialogState,
 }: {
-  onButtonClick: () => void;
-  onBackDropClick: () => void;
+  setDialogState: (state: boolean) => void;
 }) => {
+  const links: LinkModel[] = [
+    { tabIndex: 1, text: 'Link 1', route: '#' },
+    { tabIndex: 2, text: 'Link 2', route: '#' },
+    { tabIndex: 3, text: 'Link 3', route: '#' },
+  ];
+  const onButtonClick = () => {
+    setDialogState(false);
+  };
+
   return (
     <>
-      <div
-        className="w-full h-full fixed z-10 bg-lime-900 opacity-50"
-        onClick={onBackDropClick}
-      ></div>
-      <div className="z-50 fixed transition-transform">
+      <div className="z-50 fixed">
         <div className="p-8 max-w-lg rounded-xl bg-white">
           <p className="mb-6 text-black text-lg">
             It is a long established fact that a reader will be distracted by
@@ -27,7 +32,17 @@ export const Dialog = ({
             years, sometimes by accident, sometimes on purpose (injected humour
             and the like).
           </p>
-          <Button tabIndex={3} text="Close" onClick={onButtonClick} />
+          <div className="flex justify-around my-4">
+            {links.map(link => (
+              <Link
+                key={link.tabIndex}
+                tabIndex={link.tabIndex}
+                text={link.text}
+                route={link.route}
+              />
+            ))}
+          </div>
+          <Button tabIndex={4} text="Close" onClick={onButtonClick} />
         </div>
       </div>
     </>

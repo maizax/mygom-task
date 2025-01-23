@@ -1,11 +1,12 @@
 import { useState } from 'react';
 import { Button } from './button';
 import { Dialog } from './dialog';
+import { Backdrop } from './backdrop';
 
 export const Card = () => {
-  const [openDialog, setOpenDialog] = useState(false);
+  const [dialogState, setDialogState] = useState(false);
   const onClick = () => {
-    setOpenDialog(!openDialog);
+    setDialogState(true);
   };
   return (
     <>
@@ -26,9 +27,14 @@ export const Card = () => {
         </p>
         <Button tabIndex={0} text="Open me!" onClick={onClick} />
       </div>
-      {openDialog && (
-        <Dialog onButtonClick={onClick} onBackDropClick={onClick} />
-      )}
+
+      <div
+        className={`w-full h-full absolute flex items-center justify-center transition-all duration-500 ease-in-out 
+        ${dialogState ? 'opacity-100 z-10' : 'opacity-0 -z-10'}`}
+      >
+        <Backdrop setDialogState={setDialogState} dialogState={dialogState} />
+        <Dialog setDialogState={setDialogState} />
+      </div>
     </>
   );
 };
