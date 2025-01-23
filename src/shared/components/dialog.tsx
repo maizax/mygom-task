@@ -4,14 +4,15 @@ import { Link } from './link';
 
 export const Dialog = ({
   setDialogState,
+  links,
+  text,
+  dialogButtonText,
 }: {
   setDialogState: (state: boolean) => void;
+  links: LinkModel[];
+  text: string;
+  dialogButtonText: string;
 }) => {
-  const links: LinkModel[] = [
-    { tabIndex: 1, text: 'Link 1', route: '#' },
-    { tabIndex: 2, text: 'Link 2', route: '#' },
-    { tabIndex: 3, text: 'Link 3', route: '#' },
-  ];
   const onButtonClick = () => {
     setDialogState(false);
   };
@@ -20,18 +21,7 @@ export const Dialog = ({
     <>
       <div className="z-50 fixed">
         <div className="p-8 max-w-lg rounded-xl bg-white">
-          <p className="mb-6 text-black text-lg">
-            It is a long established fact that a reader will be distracted by
-            the readable content of a page when looking at its layout. The point
-            of using Lorem Ipsum is that it has a more-or-less normal
-            distribution of letters, as opposed to using 'Content here, content
-            here', making it look like readable English. Many desktop publishing
-            packages and web page editors now use Lorem Ipsum as their default
-            model text, and a search for 'lorem ipsum' will uncover many web
-            sites still in their infancy. Various versions have evolved over the
-            years, sometimes by accident, sometimes on purpose (injected humour
-            and the like).
-          </p>
+          <p className="mb-6 text-black text-lg">{text}</p>
           <div className="flex justify-around my-4">
             {links.map(link => (
               <Link
@@ -42,7 +32,11 @@ export const Dialog = ({
               />
             ))}
           </div>
-          <Button tabIndex={4} text="Close" onClick={onButtonClick} />
+          <Button
+            tabIndex={0}
+            text={dialogButtonText}
+            onClick={onButtonClick}
+          />
         </div>
       </div>
     </>

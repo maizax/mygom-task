@@ -1,4 +1,4 @@
-import { Card } from '../../../shared/components';
+import { Card } from '.';
 
 export const Dashboard = () => {
   return (

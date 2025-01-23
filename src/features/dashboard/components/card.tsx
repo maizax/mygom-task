@@ -1,13 +1,20 @@
 import { useState } from 'react';
-import { Button } from './button';
-import { Dialog } from './dialog';
-import { Backdrop } from './backdrop';
+import { Backdrop } from '../../../shared/components/backdrop';
+import { Button } from '../../../shared/components/button';
+import { Dialog } from '../../../shared/components/dialog';
+import { LinkModel } from '../../../shared/models';
+import { dialogText } from '../consts';
 
 export const Card = () => {
   const [dialogState, setDialogState] = useState(false);
   const onClick = () => {
     setDialogState(true);
   };
+  const links: LinkModel[] = [
+    { tabIndex: 1, text: 'Link 1', route: '#' },
+    { tabIndex: 2, text: 'Link 2', route: '#' },
+    { tabIndex: 3, text: 'Link 3', route: '#' },
+  ];
   return (
     <>
       <div className="p-8 max-w-md border border-gray-300 rounded-xl shadow-lg bg-white">
@@ -33,7 +40,12 @@ export const Card = () => {
         ${dialogState ? 'opacity-100 z-10' : 'opacity-0 -z-10'}`}
       >
         <Backdrop setDialogState={setDialogState} dialogState={dialogState} />
-        <Dialog setDialogState={setDialogState} />
+        <Dialog
+          links={links}
+          setDialogState={setDialogState}
+          text={dialogText}
+          dialogButtonText="Close"
+        />
       </div>
     </>
   );
