@@ -6,9 +6,9 @@ import { LinkModel } from '../../../shared/models';
 import { dialogText } from '../consts';
 
 export const Card = () => {
-  const [dialogState, setDialogState] = useState(false);
+  const [isDialogOpen, setIsDialogOpen] = useState(false);
   const onClick = () => {
-    setDialogState(true);
+    setIsDialogOpen(true);
   };
   const links: LinkModel[] = [
     { tabIndex: 1, text: 'Link 1', route: '#' },
@@ -37,12 +37,12 @@ export const Card = () => {
 
       <div
         className={`w-full h-full absolute flex items-center justify-center transition-all duration-500 ease-in-out 
-        ${dialogState ? 'opacity-100 z-10' : 'opacity-0 -z-10'}`}
+        ${isDialogOpen ? 'opacity-100 z-10' : 'opacity-0 -z-10'}`}
       >
-        <Backdrop setDialogState={setDialogState} dialogState={dialogState} />
+        <Backdrop setDialogState={setIsDialogOpen} dialogState={isDialogOpen} />
         <Dialog
           links={links}
-          setDialogState={setDialogState}
+          setDialogState={setIsDialogOpen}
           text={dialogText}
           dialogButtonText="Close"
         />

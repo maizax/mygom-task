@@ -8,12 +8,8 @@ export const Backdrop = ({
   dialogState: boolean;
 }) => {
   useEffect(() => {
-    // TODO: recheck
-    console.log('use effect');
     if (dialogState) {
-      console.log(dialogState);
       window.document.onkeydown = (event: KeyboardEvent) => {
-        console.log(event);
         if (event.key === 'Escape') {
           setDialogState(false);
         }
