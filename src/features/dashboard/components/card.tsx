@@ -1,7 +1,5 @@
 import { useState } from 'react';
-import { Backdrop } from '../../../shared/components/backdrop';
-import { Button } from '../../../shared/components/button';
-import { Dialog } from '../../../shared/components/dialog';
+import { Backdrop, Button, Dialog } from '../../../shared/components';
 import { LinkModel } from '../../../shared/models';
 import { dialogText } from '../consts';
 
